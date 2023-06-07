@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const { User, Blog, Readinglist } = require('../models')
+const { User, Blog } = require('../models')
 
 router.get('/', async (req, res) => {
   const users = await User.findAll({
@@ -47,7 +47,6 @@ router.get('/:id', async (req, res) => {
     res.status(404).end()
   }
 })
-
 
 router.put('/:username', async (req, res) => {
   const { username } = req.params

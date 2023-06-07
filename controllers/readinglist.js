@@ -1,25 +1,25 @@
 const router = require('express').Router()
 
-const { Readinglist } = require('../models/index')
+const { ReadingList } = require('../models/index')
 const { tokenExtractor } = require('../util/middleware')
 
 router.post('/', async (req, res) => {
-  const readingListEntry = await Readinglist.create(req.body)
+  const readingListEntry = await ReadingList.create(req.body)
   res.json(readingListEntry)
 })
 
 router.get('/', async (req, res) => {
-  const readingList = await Readinglist.findAll()
+  const readingList = await ReadingList.findAll()
   res.json(readingList)
 })
 
 router.get('/:id', async (req, res) => {
-  const listEntry = await Readinglist.findByPk(req.params.id)
+  const listEntry = await ReadingList.findByPk(req.params.id)
   res.json(listEntry)
 })
 
 router.put('/:id', tokenExtractor, async (req, res, next) => {
-  const readingList = await Readinglist.findByPk(req.params.id)
+  const readingList = await ReadingList.findByPk(req.params.id)
   if (!readingList) {
     return res.status(404).end()
   }
